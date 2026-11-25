@@ -11,3 +11,9 @@ celery_app = Celery(
     broker=BROKER_URL,
     backend=BROKER_URL,
 )
+
+# Если Redis не используется (например, деплой на Railway без Redis),
+# задачи выполняются синхронно в том же процессе — отдельный worker не нужен.
+if os.getenv("CELERY_TASK_ALWAYS_EAGER", "").lower() in ("1", "true", "yes"):
+    celery_app.conf.task_always_eager = True
+    celery_app.conf.task_eager_propagates = True

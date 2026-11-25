@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.log
+*.db
+.env
+.pytest_cache/
+tests/
+fake_redis_server.py
