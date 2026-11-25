@@ -47,7 +47,9 @@ def client(db_session):
     class MockTask:
         def delay(self, *args, **kwargs):
             pass
+    import routers.notes
     tasks.send_note_notification = MockTask()
+    routers.notes.send_note_notification = MockTask()
 
     with TestClient(app) as c:
         yield c

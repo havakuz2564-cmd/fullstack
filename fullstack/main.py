@@ -5,6 +5,7 @@ from slowapi.errors import RateLimitExceeded
 
 from core.database import engine, Base
 from core.limiter import limiter
+from models import user, note, category  # noqa: F401  (регистрация всех моделей в Base)
 from routers import auth, users, notes
 
 Base.metadata.create_all(bind=engine)
